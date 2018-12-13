@@ -2,11 +2,18 @@ import paho.mqtt.client as mqttc
 import paho.mqtt.publish as publish
 from ExternalComm import ExternalComm
 
-MQTT_LOCAL_SERVER = "localhost"
-MQTT_PATH = "casa"
+MQTT_LOCAL_SERVER = "localhost"  # Address of local MQTT server (must be always localhost)
+MQTT_PATH = "casa"  # Topic to establish communication with 'Things' at home
 
 
 class ThingsComm:
+    """ class ThingsComm
+        Implements the communication with the 'Things' at home using a mqtt client
+        Attributes:
+        ----------
+            client : paho.mqtt.client
+                MQTT client
+        """
     def __init__(self):
         print("Hello")
         self.client = mqttc.Client()
@@ -39,10 +46,4 @@ class ThingsComm:
         elif msg.topic == "casa/pir":
             ExternalComm.send_alarm()
             print("pir - alarm")
-
-
-"""
-thingServer = ThingsCon()
-thingServer.start()
-"""
 

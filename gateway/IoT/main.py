@@ -5,6 +5,9 @@ from ExternalComm import ExternalComm
 from Home import Home
 from GUI import GUI
 
+""" SmartHome application entry point
+"""
+
 home = Home()
 thingServer = ThingsComm()
 remoteComm = ExternalComm(home)
