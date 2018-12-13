@@ -107,10 +107,10 @@ void reconnect() {
   while (!client.connected()) {
     Serial.print("Attempting MQTT connection...");
     // Attempt to connect
-    if (client.connect("ESP8266Client")) {
+    if (client.connect("ESP8266Client1")) {
       Serial.println("connected");
       // Once connected, publish an announcement...
-      client.publish("casa/tmp", "Enviando el primer mensaje");
+      //client.publish("casa/tmp", "Enviando el primer mensaje");
       // ... and resubscribe
       client.subscribe("casa/light");
     } else {

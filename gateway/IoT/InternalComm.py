@@ -38,7 +38,7 @@ class ThingsComm:
         client.subscribe(MQTT_PATH + "/+")
 
     def on_message(self, client, userdata, msg):
-        print("We got a message")
+        print("InternalComm got a message")
         print('%s %s' % (msg.topic, msg.payload))
         if msg.topic == "casa/tmp":
             print("tmp")

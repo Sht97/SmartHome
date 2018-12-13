@@ -13,15 +13,7 @@ PASS = "danny"  # password
 
 
 class ExternalComm:
-    """ class ExternalComm
-    Implements the communication with the remote server through a mqtt client
-    Attributes:
-    ----------
-        client : paho.mqtt.client
-            MQTT client
-        myHome : Home
-            Reference to home object
-    """
+
     def __init__(self, home):
         print("new ExternalComm created")
         self.client = mqttc.Client()
@@ -79,10 +71,14 @@ class ExternalComm:
         info = msg.payload.decode("ascii")  # msg.payload is a binary string
         if info == "start_streaming":
             print("starting streaming...")
+            if not self.myhome.get_light():
+                self.myhome.toggle_light()
             self.process = subprocess.Popen(['python3', 'streaming.py'])  # create streaming process
         elif info == "stop_streaming":
             print("stop streaming...")
             self.process.kill()  # Kill streaming process
+            if self.myhome.get_light():
+                self.myhome.toggle_light()
         elif info == "light":
             print("ext: must toggle light")
             self.myHome.toggle_light()
